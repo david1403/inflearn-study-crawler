@@ -1,4 +1,4 @@
-package io.springbatch.inflearnstudycrawlerbatch.config;
+package io.springbatch.inflearnstudycrawlerbatch.batch.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
@@ -8,12 +8,14 @@ import org.springframework.batch.core.repository.JobRepository;
 import org.springframework.batch.core.step.builder.StepBuilder;
 import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.transaction.PlatformTransactionManager;
 
 @Configuration
 @Slf4j
+@ConditionalOnProperty(name = "job.name", havingValue = "DEFAULT")
 public class TestConfiguration {
 
     @Bean
@@ -23,9 +25,9 @@ public class TestConfiguration {
                 .build();
     }
     @Bean
-    public Step simpleStep1(JobRepository jobRepository, Tasklet testTasklet, PlatformTransactionManager platformTransactionManager){
+    public Step simpleStep1(JobRepository jobRepository, PlatformTransactionManager platformTransactionManager) {
         return new StepBuilder("simpleStep1", jobRepository)
-                .<Object, Object>chunk(100, platformTransactionManager)
+                .tasklet(testTasklet(), platformTransactionManager)
                 .build();
 
     }
