@@ -5,13 +5,14 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Entity
 @Table(name = "study")
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
 public class InflearnStudyEntity {
     @Id

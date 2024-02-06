@@ -2,6 +2,7 @@ package io.springbatch.inflearnstudycrawlerbatch.common.model.service;
 
 import io.springbatch.inflearnstudycrawlerbatch.common.model.converter.InflearnStudyConverter;
 import io.springbatch.inflearnstudycrawlerbatch.common.model.dto.InflearnStudyDto;
+import io.springbatch.inflearnstudycrawlerbatch.common.model.entity.InflearnStudyEntity;
 import io.springbatch.inflearnstudycrawlerbatch.common.model.repository.InflearnStudyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +17,17 @@ public class InflearnStudyService {
     private final InflearnStudyConverter inflearnStudyConverter;
 
     public boolean checkExist(InflearnStudyDto inflearnStudyDto) {
-        return inflearnStudyRepository.existsByStudyCode(inflearnStudyDto.getStudyCode());
+        return inflearnStudyRepository.findByStudyCode(inflearnStudyDto.getStudyCode()).isPresent();
     }
 
     public int updateStudyInfo(InflearnStudyDto inflearnStudyDto) {
-        //TODO: create update query
+        inflearnStudyRepository.updateByStudyCode(
+                inflearnStudyDto.getStudyCode(),
+                inflearnStudyDto.getLikeCount(),
+                inflearnStudyDto.getCommentCount(),
+                inflearnStudyDto.getViewCount(),
+                inflearnStudyDto.getRecruitStatus()
+        );
         return 0;
     }
 

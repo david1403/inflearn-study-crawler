@@ -32,6 +32,8 @@ dependencies {
     implementation 'com.mysql:mysql-connector-j'
     // Jsoup
     implementation 'org.jsoup:jsoup:1.15.3'
+    // coolSms
+    implementation 'net.nurigo:sdk:4.3.0'
 
     runtimeOnly 'com.h2database:h2'
 

@@ -12,17 +12,17 @@ public class InflearnStudyConverter {
             return null;
         }
 
-        return new InflearnStudyEntity(
-                0,
-                inflearnStudyDto.getStudyCode(),
-                inflearnStudyDto.getStudyName(),
-                inflearnStudyDto.getLeaderName(),
-                inflearnStudyDto.getRecruitStatus(),
-                inflearnStudyDto.getLikeCount(),
-                inflearnStudyDto.getViewCount(),
-                inflearnStudyDto.getCommentCount(),
-                inflearnStudyDto.getUpdatedAt()
-        );
+        InflearnStudyEntity entity = new InflearnStudyEntity();
+        entity.setStudyCode(inflearnStudyDto.getStudyCode());
+        entity.setName(inflearnStudyDto.getStudyName());
+        entity.setLeaderName(inflearnStudyDto.getLeaderName());
+        entity.setRecruitStatus(inflearnStudyDto.getRecruitStatus());
+        entity.setLikeCount(inflearnStudyDto.getLikeCount());
+        entity.setViewCount(inflearnStudyDto.getViewCount());
+        entity.setCommentCount(inflearnStudyDto.getCommentCount());
+        entity.setUpdatedAt(inflearnStudyDto.getUpdatedAt());
+
+        return entity;
     }
 
     public InflearnStudyDto convertToInflearnStudyDto(InflearnStudyEntity entity) {
